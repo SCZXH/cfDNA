@@ -25,12 +25,15 @@ wget -c https://zenodo.org/record/3928546/files/mappability.zip
 wget -c https://zenodo.org/record/3928546/files/chrm_state.zip
 
 unzip GC.zip
+
 unzip mappability.zip
+
 unzip chrm_state.zip
 
 cd ../hotspots_calling
 
 wget -c https://zenodo.org/record/3928546/files/BH01.chr22.bam
+
 wget -c https://zenodo.org/record/3928546/files/BH01.chr22.bam.bai
 
 Run the example test file at your bash command line to call hotspot. (link the Basic_info/ into your current working directory)
@@ -53,21 +56,33 @@ Installation
 Prerequisites
 
 Linux, Mac OSX, and Windows (with at least 10Gb memory for each CPU core)
+
 Matlab 2019b
+
 python 2.7
+
 pysam 0.12.0.1 or above
+
 samtools 1.9
 
 required files
 Indexed Bam file (paired-end whole-genome sequencing, recommends having at least 200 million fragments in autosomes after the samtools filtering step. If you want to call hotspots for several chrommsomes (not the whole autosome), you can provide the bam file only with the corresponding chromosomes.)
+
 Basic_info directory Always link the Basic_info/ under your current working directory (an example is showed in Quick Start part)
+
 GC content files (provided in zenodo.org for hg19/GRch37, download it under Basic_info directory and unzip it)
+
 Mappability files (provided in zenodo.org for hg19/GRch37, download it under Basic_info directory and unzip it)
+
 ChromHMM state files (provided in zenodo.org for hg19/GRch37, download it under Basic_info directory and unzip it)
+
 Usage
 Sample pre-processing and read
+
 samtools view -bh -f 3 -F 3852 -q 30 input.bam > output.filtered.bam
+
 samtools index output.filtered.bam
+
 python bam_read.py -in output.filtered.bam -out result_dir
 
 ///////////
@@ -78,12 +93,19 @@ Two modes for the hotspot calling: 1 - call hotspots using IFS. 2 - call hotspot
 Run it directly at matlab (all the following code examples will follow this style)
 
 CRAG('result_dir',1)
+
 Run it at linux bash with matlab installed
+
 matlab -nodisplay -r 'CRAG result_dir 1; exit;'
+
 Options for hotspot calling
+
 fdr cut-off:argument: 'fdr', a positive number between 0 to 1. default: 0.05
+
 hotspot distance for merging: argument: 'distance', a positive integer. default: 200
+
 whether or not do enrichment for the hotspots: argument: 'enrichment', 0 or 1. default: 1.
+
 Example code with option specified: CRAG('result_dir',1,'distance',300,'enrichment',0)
 
 This command will call hotspots in 'result_dir', using IFS without GC-bias correction, with fdr cut-off = 0.01. After the significant regions were detected, the regions nearby (with distance less than 300bp) were merged. And the pipeline will produce four files (two hotspot files: hotspots.bed and hotspots.mat and two files of the fragmentation pattern around hotspots (IFS_plot.fig, IFS_plot.pdf))in result_dir/result/n.
@@ -111,19 +133,27 @@ file_list:the name of an excel file (include the Suffix name), or a variable inc
 input_path: The path of all the files, i.e. ./bladder
 
 out_name: The output file name (matrix file name)
+
 peak_type： Peak_type==1: IFS. Peak_type==2: GC bias corrected IFS.
+
 peak_file: The sample name for the hotspots to obtain the IFS score.
+
 For example, when we do obtain the IFS matrix of bladder samples and healthy samples, For all samples (bladder cancer samples and healthy samples), we want to get the IFS score of both the bladder hotspots and healthy hotspots. If we have the hotspots of bladder samples in Bladder/result_n/ and the hotspots of healthy samples in healthy/result_n/, we could run:
- IFS_matrix_obtain('AllSamples.xlsx','bladder','../All_matrix_IFS.mat',1,'Bladder','healthy').
+IFS_matrix_obtain('AllSamples.xlsx','bladder','../All_matrix_IFS.mat',1,'Bladder','healthy').
 
 
 Classification of all the samples using the IFS matrix for the samples, using 10 times 10-fold cross validation:
+
 function:classification_CV.m
+
 %%input_matrix: i.e.All_matrix_IFS.mat
+
 %%the file name for the output results: i.e. class_result.mat
 
 Parameters:
+
 file_list:the name of an excel file (include the Suffix name), or a variable include all the the files.
+
 input_path: The path of all the files, i.e. ./bladder
 
 For example:
@@ -131,9 +161,12 @@ classification_CV('All_matrix_IFS.mat','class_result.mat');
 
 
 
-License
+License:
+
 For academic research, please refer to MIT license.
+
 For commerical usage, please contact the authors.
 
-Contact
+Contact:
+
 Xionghui Zhou: zhouxionghui6@gmail.com
