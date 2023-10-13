@@ -109,15 +109,9 @@ classification_CV('All_matrix_IFS.mat','class_result.mat');
 
 
 
-
-
-
-
-
-
-
 License
 For academic research, please refer to MIT license.
 For commerical usage, please contact the authors.
+
 Contact
 Xionghui Zhou zhouxionghui6@gmail.com
