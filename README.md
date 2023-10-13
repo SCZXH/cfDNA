@@ -1,6 +1,6 @@
 This package includes a tool for calling hotspots using urinary cfDNA sequencing data, extracting fragment patterns in hotspot regions (IFS), building a cancer diagnostic model (specifically, a bladder cancer diagnostic model) with machine learning, and performing cross-validation for model evaluation.
 
-The hotspot calling package is similar to a tool we previously developed called CRAG (https://github.com/epifluidlab/CRAG). CRAG is used to identify hotspot regions in the genome using cfDNA sequencing data from plasma. In this case, to identify hotspots in urinary cfDNA sequencing data and locate regions with smaller IFS in the genome, we use a Poisson distribution test instead of the non-negative binomial test used in CRAG. Additionally, the default p-values and FDR values differ between the two methods.
+The hotspot calling package is similar to a tool we previously developed called CRAG (https://github.com/epifluidlab/CRAG). CRAG is used to identify hotspot regions in the genome using cfDNA sequencing data from plasma. In this case, to identify hotspots in urinary (plasma) cfDNA sequencing data and locate regions with smaller IFS in the genome, we use a Poisson distribution test instead of the non-negative binomial test used in CRAG. Additionally, the default p-values and FDR values differ between the two methods.
 
 As the frameworks of the two methods are quite similar, some of the following section of text is copied from https://github.com/epifluidlab/CRAG.
 
