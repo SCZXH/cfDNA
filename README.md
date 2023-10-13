@@ -11,11 +11,17 @@ Install
 git clone --recursive https://github.com/SCZXH/cfDNA.git
 
 cd CRAG
+
 pip install pysam
+
 Download the test bam file and the required GC and mappability files
+
 cd Basic_info
+
 wget -c https://zenodo.org/record/3928546/files/GC.zip
+
 wget -c https://zenodo.org/record/3928546/files/mappability.zip
+
 wget -c https://zenodo.org/record/3928546/files/chrm_state.zip
 
 unzip GC.zip
